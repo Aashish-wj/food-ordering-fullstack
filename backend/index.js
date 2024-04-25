@@ -1,4 +1,9 @@
-
+global.foodData = require("./db")(function call(err, data, CatData) {
+  // console.log(data)
+  if (err) console.log(err);
+  global.foodData = data;
+  global.foodCategory = CatData;
+});
 const cors = require("cors");
 const express = require("express");
 const app = express();
@@ -18,12 +23,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  global.foodData = require("./db")(function call(err, data, CatData) {
-  // console.log(data)
-  if (err) console.log(err);
-  global.foodData = data;
-  global.foodCategory = CatData;
-});
 res.send("Hello World!");
 });
 
